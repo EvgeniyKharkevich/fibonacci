@@ -1,26 +1,41 @@
+import java.util.Arrays;
+
 public class Fibonacci {
 
-    public static long fibonacciFor(int n) {
-        long[] array = new long[n + 1];
-        array[0] = 0;
-        array[1] = 1;
-        for (int i = 2; i <= n; i++) {
-            array[i] = array[i - 1] + array[i - 2];
-        }
-        return array[n];
+    public static String answer (int loopType, int n){
+        return Arrays.toString(calculate(loopType,n));
     }
 
-    private static long calculateWithFor(int n) {
-        long first = 0;
-        long second = 1;
-        long result = n;
-        for (int i = 1; i < n; i++) {
-            result = first + second;
-            first = second;
-            second = result;
+    public static int[] calculate (int loopType,int n){
+        int[] answer = new int[n];
+        switch (loopType){
+            case 1:
+                answer = fibonacciFor(n);
+                break;
+            case 2:
+                answer = fibonacciWhile(n);
+                break;
+            case 3:
+                answer = fibonacciDoWhile(n);
         }
-        return result;
+        return answer;
     }
+
+
+
+    public static int[] fibonacciFor(int a) {
+        int[] array = new int[a + 1];
+        array[0] = 0;
+        array[1] = 1;
+        if (a<2)
+            return array;
+        for (int i = 2; i < array.length; i++) {
+            array[i] = array[i - 1] + array[i - 2];
+        }
+        return array;
+    }
+
+
 
     public static int[] fibonacciWhile(int n) {
         int[] arr1 = new int[n];
